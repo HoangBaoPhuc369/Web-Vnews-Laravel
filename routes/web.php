@@ -12,6 +12,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Models\Post;
+use App\Models\Category;
+use App\Models\User;
+use App\Models\Image;
+
+Route::get('/createpost',function(){
+    $image = Image::find(1);
+    return $image->imageable;
+});
+
+
+
+
+
+
+
 
 Route::get('/', function () {
     return view('home');
