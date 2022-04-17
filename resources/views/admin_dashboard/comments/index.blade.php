@@ -35,7 +35,7 @@
 										<th>Comment Author</th>
 										<th>Comment Body</th>
 										<th>View Comment</th>
-										<th>Created at</th>
+										<th>Created At</th>
 										<th>Actions</th>
 									</tr>
 								</thead>
@@ -53,7 +53,7 @@
 											</div>
 										</td>
 										<td>{{ $comment->user->name }} </td>
-										<td>{{ \Str::limit( $comment->the_comment,50) }} </td>
+										<td>{{ \Str::limit( $comment->the_comment,60d) }} </td>
                                         <td>
                                             <a target='_blank' class="btn btn-primary btn-sm" href="{{ route('posts.show', $comment->post->slug)}}#comment_{{ $comment->id}}">View Comment</a>
                                         </td>
