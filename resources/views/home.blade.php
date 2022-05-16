@@ -1,58 +1,62 @@
 @extends('main_layouts.master')
 
-@section('title', 'MyBlog | Home')
+@section('title', 'Vnews | Home')
 
 @section('content')
 
-<div class="colorlib-blog">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 posts-col">
-
-            @forelse($posts as $post)
-
-            <div class="block-21 d-flex animate-box post">
-                <a 
-                href="{{ route('posts.show', $post) }}" 
-                class="blog-img" 
-                style="background-image: url({{ asset('storage/' . $post->image->path. '')  }});"></a>
-                <div class="text">
-                   <h3 class="heading"><a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></h3>
-                   <p class="excerpt">{{ $post->excerpt }}</p>
-                   <div class="meta">
-                       <div><a class='date' href="#"><span class="icon-calendar"></span>  {{ $post->created_at->diffForHumans() }}</a></div>
-                       <div><a href="#"><span class="icon-user2"></span> {{ $post->author->name }}</a></div>
-                        <div class="comments-count">
-                            <a href="{{ route('posts.show', $post) }}#post-comments">
-                                <span class="icon-chat"></span> {{ $post->comments_count }}
-                            </a>
-                        </div>
-                   </div>
+<div class="col-lg-8">
+    <!-- blog -->
+    <div class="blog grid grid-view">
+        <div class="row isotope gx-md-8 gy-8 mb-8">
+        @forelse($posts as $post)
+            <article class="item post col-md-6">
+                <div class="card">
+                <figure class="card-img-top overlay overlay-1 hover-scale"><a href="{{ route('posts.show', $post) }}"> <img src="{{ asset('storage/' . $post->image->path. '')  }}" style="height: 224.422px;" alt="" /></a>
+                    <figcaption>
+                    <h5 class="from-top mb-0">Read More</h5>
+                    </figcaption>
+                </figure>
+                <div class="card-body">
+                    <div class="post-header">
+                    <!-- <div class="post-category text-line">
+                        <a href="#" class="hover" rel="category">Coding</a>
+                    </div> -->
+                    <!-- /.post-category -->
+                    <h2 class="post-title h3 mt-1 mb-3"><a class="link-dark" href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></h2>
+                    </div>
+                    <!-- /.post-header -->
+                    <div class="post-content">
+                    <p>{{ $post->excerpt }}</p>
+                    </div>
+                    <!-- /.post-content -->
                 </div>
-            </div>
-            @empty
+                <!--/.card-body -->
+                <div class="card-footer">
+                    <ul class="post-meta d-flex mb-0">
+                    <li class="post-date"><i class="uil uil-calendar-alt"></i><span>{{ $post->created_at->diffForHumans() }}</span></li>
+                    <li class="post-comments"><a href="{{ route('posts.show', $post) }}#post-comments"><i class="uil uil-comment"></i>{{ $post->comments_count }}</a></li>
+                    <li class="post-likes ms-auto"><a href="#"><i class="uil uil-user"></i>{{ $post->author->name }}</a></li>
+                    </ul>
+                    <!-- /.post-meta -->
+                </div>
+                <!-- /.card-footer -->
+                </div>
+                <!-- /.card -->
+            </article>
+        <!-- /.post -->
+        @empty
                 <p class='lead'>There are no posts to show.</p>
+        @endforelse
 
-            @endforelse
-            
-            {{ $posts->links() }}
-
-             </div>
-
-            <!-- SIDEBAR: start -->
-            <div class="col-md-4 animate-box">
-                <div class="sidebar">
-                    
-                    <x-blog.side-categories :categories="$categories"/>
-
-                    <x-blog.side-recent-posts :recentPosts="$recent_posts"/>
-
-                    <x-blog.side-tags :tags="$tags"/>
-                    
-                </div>
-            </div>
+       
         </div>
+        <!-- /.row -->
     </div>
+    <!-- /.blog -->
+   
+    <!-- /.pagination -->
+    {{ $posts->links() }}
+    <!-- /nav -->
 </div>
 
 @endsection

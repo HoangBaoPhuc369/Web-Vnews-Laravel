@@ -1,12 +1,10 @@
 @props(['categories'])
 
-<div class="side">
-    <h3 class="sidebar-heading">Categories</h3>
-    <div class="block-24">
-       <ul>
-        @foreach($categories as $category)
-          <li><a href="{{ route('categories.show', $category) }}">{{ $category->name }} <span>{{ $category->posts_count }}</span></a></li>
-        @endforeach
-       </ul>
-    </div>
+<div class="widget">
+  <h4 class="widget-title mb-3">Categories</h4>
+  <ul class="unordered-list bullet-primary text-reset">
+    @foreach($categories as $category)
+      <li><a href="{{ route('categories.show', $category) }}">{{ $category->name }} ( {{$category->posts_count}})</a></li>
+    @endforeach
+  </ul>
 </div>

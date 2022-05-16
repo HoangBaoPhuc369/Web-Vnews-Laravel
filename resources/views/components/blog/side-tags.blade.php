@@ -1,14 +1,10 @@
 @props(['tags'])
 
-<div class="side">
-    <h3 class="sidbar-heading">Tags</h3>
-    <div class="block-26">
-       <ul>
+<div class="widget">
+    <h4 class="widget-title mb-3">Tags</h4>
+    <ul class="list-unstyled tag-list">
         @foreach($tags as $tag)
-            <li>
-                <a href="{{ route('tags.show', $tag) }}">{{ $tag->name }}</a>
-            </li>
+            <li><a href="{{ route('tags.show', $tag) }}" class="btn btn-soft-ash btn-sm rounded-pill">{{ $tag->name }}</a></li>
         @endforeach
-        </ul>
-    </div>
+    </ul>
 </div>

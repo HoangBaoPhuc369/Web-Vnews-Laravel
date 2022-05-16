@@ -27,3 +27,10 @@
 {
     width: 100%;
 }
+
+.image-list .popular_post {
+    float: left;
+    width: 5.5rem;
+    height: 4.5rem;
+    margin-right: 1em;
+}

@@ -1,281 +1,266 @@
 <!DOCTYPE HTML>
 <html>
-    <head>
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An impressive and flawless site template that includes various UI elements and countless features, attractive ready-made blocks and rich pages, basically everything you need to create a unique and professional website.">
+    <meta name="keywords" content="bootstrap 5, business, corporate, creative, gulp, marketing, minimal, modern, multipurpose, one page, responsive, saas, sass, seo, startup, html5 template, site template">
+    <meta name="author" content="elemis">
     <title>@yield('title')</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-
-  <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content=""/>
-    <meta property="og:image" content=""/>
-    <meta property="og:url" content=""/>
-    <meta property="og:site_name" content=""/>
-    <meta property="og:description" content=""/>
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
-
-    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900" rel="stylesheet">
-    
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="{{ asset('blog_template/css/animate.css') }}">
-    <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="{{ asset('blog_template/css/icomoon.css') }}">
-    <!-- Bootstrap  -->
-    <link rel="stylesheet" href="{{ asset('/blog_template/css/bootstrap.css') }}">
-
-    <!-- Magnific Popup -->
-    <link rel="stylesheet" href="{{ asset('blog_template/css/magnific-popup.css') }}">
-
-    <!-- Flexslider  -->
-    <link rel="stylesheet" href="{{ asset('blog_template/css/flexslider.css') }}">
-
-    <!-- Owl Carousel -->
-    <link rel="stylesheet" href="{{ asset('blog_template/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('blog_template/css/owl.theme.default.min.css') }}">
-    
-    <!-- Flaticons  -->
-    <link rel="stylesheet" href="{{ asset('blog_template/fonts/flaticon/font/flaticon.css') }}">
-
-    <!-- Theme style  -->
-    <link rel="stylesheet" href="{{ asset('blog_template/css/style.css') }}">
-
+    <link rel="shortcut icon" href="{{ asset('/assets/img/favicon.png') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/plugins.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mystyle.css') }}">
+</head>
 
-    <!-- Modernizr JS -->
-    <script src="{{ asset('blog_template/js/modernizr-2.6.2.min.js') }}"></script>
-    <!-- FOR IE9 below -->
-    <!--[if lt IE 9]>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
-
-
-    @yield('custom_css')
-
-    </head>
-    <body>
-        
-    <div id="page">
-        <nav class="colorlib-nav" role="navigation">
-            
-            <div class="top-menu">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div id="colorlib-logo"><a href="{{ route('home') }}">Blog</a></div>
-                        </div>
-                        <div class="col-md-10 text-right menu-1">
-                            <ul>
-                                <li><a href="{{ route('home') }}">Home</a></li>
-                                <li class="has-dropdown">
-                                    <a href="{{ route('categories.index') }}">Categories</a>
-                                    <ul class="dropdown">
-                                        @foreach($navbar_categories as $category)
-                                        <li><a href="{{ route('categories.show', $category) }}">{{ $category->name }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                                <li><a href="{{ route('about') }}">About</a></li>
-                                <li><a href="{{ route('contact.create') }}">Contact</a></li>
-                                
-                                @guest
-                                <li class="btn-cta"><a href="{{ route('login') }}"><span>Sign in</span></a></li>
-                                @endguest
-
-                                @auth
-                                
-                                <li class="has-dropdown">
-                                    <a href="#">{{ auth()->user()->name }} <span class="caret"></span></a>
-                                    <ul class="dropdown">
-                                        <li>
-                                            <a 
-                                            onclick="event.preventDefault();
-                                            document.getElementById('nav-logout-form').submit()" 
-                                            href="#">Logout</a>
-
-                                            <form id="nav-logout-form" action="{{ route('logout') }}" method="POST">
-                                                @csrf
-                                            </form>
-
-                                        </li>
-                                    </ul>
-                                </li>
-                                @endauth
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<body>
+  <div class="content-wrapper">
+    <header class="wrapper bg-soft-primary">
+      <nav class="navbar navbar-expand-lg center-nav navbar-light navbar-bg-light">
+        <div class="container flex-lg-row flex-nowrap align-items-center">
+          <div class="navbar-brand w-100">
+            <a href="{{ route('home') }}">
+              <img src="./assets/img/logo.png" srcset="./assets/img/logo@2x.png 2x" alt="" />
+            </a>
+          </div>
+          <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
+            <div class="offcanvas-header d-lg-none">
+              <h3 class="text-white fs-30 mb-0">Vnews</h3>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-        </nav>
-        <aside id="colorlib-hero">
-            <div class="flexslider">
-                <ul class="slides">
-                
-                </ul>
+            <div class="offcanvas-body ms-lg-auto d-flex flex-column h-100">
+              <ul class="navbar-nav">
+                <li class="nav-item dropdown dropdown-mega">
+                  <a class="nav-link " href="{{ route('home') }}" >Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="{{ route('categories.index') }}" >Categories</a>
+                  <ul class="dropdown-menu">
+                      @foreach($navbar_categories as $category)
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="{{ route('categories.show', $category) }}" >{{ $category->name }}</a>
+                        </li>
+                      @endforeach 
+                  </ul>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link " href="{{ route('about') }}" >About</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link " href="{{ route('contact.create') }}" >Contact</a>
+                </li>
+              </ul>
             </div>
-        </aside>
+            <!-- /.offcanvas-body -->
+          </div>
+          <!-- /.navbar-collapse -->
+          <div class="navbar-other w-100 d-flex ms-auto">
+            <ul class="navbar-nav flex-row align-items-center ms-auto">
+                @guest
+                    <li class="nav-item dropdown language-select text-uppercase">
+                        <a class="nav-link" href="{{ route('login') }}" role="button">Sign In</a>
+                    </li>
+                    <li class="nav-item d-none d-md-block">
+                        <a href="{{ route('register') }}" class="btn btn-sm btn-primary rounded-pill">Sign Up</a>
+                    </li>
+                    <!-- <li class="nav-item d-lg-none">
+                        <button class="hamburger offcanvas-nav-btn"><span></span></button>
+                    </li> -->
+                @endguest
+
+                @auth
+                    <li class="nav-item dropdown language-select text-uppercase">
+                      <a class="nav-link dropdown-item dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->name }} </a>
+                      <ul class="dropdown-menu">
+                        <li class="nav-item">
+                          <a class="dropdown-item" onclick="event.preventDefault();
+                                document.getElementById('nav-logout-form').submit()" 
+                                href="#" href="#">Logout</a>
+                        </li>
+                        <form id="nav-logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                        </form>
+                      </ul>
+                    </li>
+                @endauth
+            </ul>
+            <!-- /.navbar-nav -->
+          </div>
+          <!-- /.navbar-other -->
+        </div>
+        <!-- /.container -->
+      </nav>
+      <!-- /.navbar -->
+    </header>
+    <!-- /header -->
+    <section class="wrapper bg-soft-primary">
+      <div class="container py-12 py-md-16 text-center">
+        <div class="row">
+          <div class="col-md-7 col-lg-6 col-xl-5 mx-auto">
+            <h1 class="display-1 mb-3">Business News</h1>
+            <p class="lead px-lg-5 px-xxl-8 mb-1">Welcome to our journal. Here you can find the latest company news and business articles.</p>
+          </div>
+          <!-- /column -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container -->
+    </section>
+    <!-- /section -->
+    <section class="wrapper bg-light wrapper-border">
+      <div class="container inner py-8">
+        <div class="row gx-lg-8 gx-xl-12 gy-4 gy-lg-0">
+          <div class="col-lg-8 align-self-center">
+            <div class="blog-filter filter">
+              <p>Blog Filter:</p>
+              <ul>
+                <li><a class="active" href="#">Paper</a></li>
+                <li><a href="#">Fabric</a></li>
+                <li><a href="#">Fashion</a></li>
+                <li><a href="#">Party</a></li>
+                <li><a href="#">Printables</a></li>
+              </ul>
+            </div>
+            <!--/.filter -->
+          </div>
+          <!--/column -->
+          <aside class="col-lg-4 sidebar">
+            <form class="search-form">
+              <div class="form-floating mb-0">
+                <input id="search-form" type="text" class="form-control" placeholder="Search">
+                <label for="search-form">Search</label>
+              </div>
+            </form>
+            <!-- /.search-form -->
+          </aside>
+          <!-- /column .sidebar -->
+        </div>
+        <!--/.row -->
+      </div>
+      <!-- /.container -->
+    </section>
+    <!-- /section -->
+    <section class="wrapper bg-light">
+      <div class="container py-14 py-md-16">
+        <div class="row gx-lg-8 gx-xl-12">
 
         @yield('content')
 
-
-<div id="colorlib-subscribe" class="subs-img" style="background-image: url({{ asset('blog_template/images/img_bg_2.jpg') }});" data-stellar-background-ratio="0.5">
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center colorlib-heading animate-box">
-                        <h2>Subscribe Newsletter</h2>
-                        <p>Subscribe our newsletter and get latest update</p>
-                    </div>
-                </div>
-                <div class="row animate-box">
-                    <div class="col-md-6 col-md-offset-3">
-                        <div class="row">
-                            <div class="col-md-12">
-                            <form class="form-inline qbstp-header-subscribe">
-                                <div class="col-three-forth">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="email" placeholder="Enter your email">
-                                    </div>
-                                </div>
-                                <div class="col-one-third">
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary">Subscribe Now</button>
-                                    </div>
-                                </div>
-                            </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <aside class="col-lg-4 sidebar mt-8 mt-lg-6">
+            <div class="widget">
+              <h4 class="widget-title mb-3">Follow Us On Social</h4>
+              <nav class="nav social">
+                <a href="#"><i class="uil uil-twitter"></i></a>
+                <a href="#"><i class="uil uil-facebook-f"></i></a>
+                <a href="#"><i class="uil uil-dribbble"></i></a>
+                <a href="#"><i class="uil uil-instagram"></i></a>
+                <a href="#"><i class="uil uil-youtube"></i></a>
+              </nav>
+              <!-- /.social -->
             </div>
+            <!-- /.widget -->
+            <x-blog.side-recent-posts :recentPosts="$recent_posts"/>
+           
+            <!-- /.widget -->
+            <x-blog.side-categories :categories="$categories"/>
+            <!-- /.widget -->
+            <x-blog.side-tags :tags="$tags"/>
+           
+          </aside>
+          <!-- /column .sidebar -->
         </div>
-        
-        <footer id="colorlib-footer">
-            <div class="container">
-                <div class="row row-pb-md">
-                    <div class="col-md-3 colorlib-widget">
-                        <h4>Contact Info</h4>
-                        <ul class="colorlib-footer-links">
-                            <li>291 South 21th Street, <br> Suite 721 New York NY 10016</li>
-                            <li><a href="tel://1234567920"><i class="icon-phone"></i> + 1235 2355 98</a></li>
-                            <li><a href="mailto:info@yoursite.com"><i class="icon-envelope"></i> info@yoursite.com</a></li>
-                            <li><a href="http://luxehotel.com"><i class="icon-location4"></i> yourwebsite.com</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2 colorlib-widget">
-                        <h4>Programs</h4>
-                        <p>
-                            <ul class="colorlib-footer-links">
-                                <li><a href="#"><i class="icon-check"></i> Diploma Degree</a></li>
-                                <li><a href="#"><i class="icon-check"></i> BS Degree</a></li>
-                                <li><a href="#"><i class="icon-check"></i> Beginner</a></li>
-                                <li><a href="#"><i class="icon-check"></i> Intermediate</a></li>
-                                <li><a href="#"><i class="icon-check"></i> Advance</a></li>
-                                <li><a href="#"><i class="icon-check"></i> Difficulty</a></li>
-                            </ul>
-                        </p>
-                    </div>
-                    <div class="col-md-2 colorlib-widget">
-                        <h4>Useful Links</h4>
-                        <p>
-                            <ul class="colorlib-footer-links">
-                                <li><a href="#"><i class="icon-check"></i> About Us</a></li>
-                                <li><a href="#"><i class="icon-check"></i> Testimonials</a></li>
-                                <li><a href="#"><i class="icon-check"></i> Courses</a></li>
-                                <li><a href="#"><i class="icon-check"></i> Event</a></li>
-                                <li><a href="#"><i class="icon-check"></i> News</a></li>
-                                <li><a href="#"><i class="icon-check"></i> Contact</a></li>
-                            </ul>
-                        </p>
-                    </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container -->
+    </section>
+    <!-- /section -->
+  </div>
+  <!-- /.content-wrapper -->
 
-                    <div class="col-md-2 colorlib-widget">
-                        <h4>Support</h4>
-                        <p>
-                            <ul class="colorlib-footer-links">
-                                <li><a href="#"><i class="icon-check"></i> Documentation</a></li>
-                                <li><a href="#"><i class="icon-check"></i> Forums</a></li>
-                                <li><a href="#"><i class="icon-check"></i> Help &amp; Support</a></li>
-                                <li><a href="#"><i class="icon-check"></i> Scholarship</a></li>
-                                <li><a href="#"><i class="icon-check"></i> Student Transport</a></li>
-                                <li><a href="#"><i class="icon-check"></i> Release Status</a></li>
-                            </ul>
-                        </p>
+  <footer class="bg-dark text-inverse">
+    <div class="container py-13 py-md-15">
+      <div class="row gy-6 gy-lg-0">
+        <div class="col-md-4 col-lg-3">
+          <div class="widget">
+            <img class="mb-4" src="./assets/img/logo-light.png" srcset="./assets/img/logo-light@2x.png 2x" alt="" />
+            <p class="mb-4">© 2021 Sandbox. <br class="d-none d-lg-block" />All rights reserved.</p>
+            <nav class="nav social social-white">
+              <a href="#"><i class="uil uil-twitter"></i></a>
+              <a href="#"><i class="uil uil-facebook-f"></i></a>
+              <a href="#"><i class="uil uil-dribbble"></i></a>
+              <a href="#"><i class="uil uil-instagram"></i></a>
+              <a href="#"><i class="uil uil-youtube"></i></a>
+            </nav>
+            <!-- /.social -->
+          </div>
+          <!-- /.widget -->
+        </div>
+        <!-- /column -->
+        <div class="col-md-4 col-lg-3">
+          <div class="widget">
+            <h4 class="widget-title text-white mb-3">Get in Touch</h4>
+            <address class="pe-xl-15 pe-xxl-17">Moonshine St. 14/05 Light City, London, United Kingdom</address>
+            <a href="mailto:#">info@email.com</a><br /> 00 (123) 456 78 90
+          </div>
+          <!-- /.widget -->
+        </div>
+        <!-- /column -->
+        <div class="col-md-4 col-lg-3">
+          <div class="widget">
+            <h4 class="widget-title text-white mb-3">Learn More</h4>
+            <ul class="list-unstyled  mb-0">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Our Story</a></li>
+              <li><a href="#">Projects</a></li>
+              <li><a href="#">Terms of Use</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+          <!-- /.widget -->
+        </div>
+        <!-- /column -->
+        <div class="col-md-12 col-lg-3">
+          <div class="widget">
+            <h4 class="widget-title text-white mb-3">Our Newsletter</h4>
+            <p class="mb-5">Subscribe to our newsletter to get our news & deals delivered to you.</p>
+            <div class="newsletter-wrapper">
+              <!-- Begin Mailchimp Signup Form -->
+              <div id="mc_embed_signup2">
+                <form action="https://elemisfreebies.us20.list-manage.com/subscribe/post?u=aa4947f70a475ce162057838d&amp;id=b49ef47a9a" method="post" id="mc-embedded-subscribe-form2" name="mc-embedded-subscribe-form" class="validate dark-fields" target="_blank" novalidate>
+                  <div id="mc_embed_signup_scroll2">
+                    <div class="mc-field-group input-group form-floating">
+                      <input type="email" value="" name="EMAIL" class="required email form-control" placeholder="Email Address" id="mce-EMAIL2">
+                      <label for="mce-EMAIL2">Email Address</label>
+                      <input type="submit" value="Join" name="subscribe" id="mc-embedded-subscribe2" class="btn btn-primary ">
                     </div>
-
-                    <div class="col-md-3 colorlib-widget">
-                        <h4>Recent Post</h4>
-                        <div class="f-blog">
-                            <a href="blog.html" class="blog-img" style="background-image: url({{ asset('blog_template/images/blog-1.jpg') }});">
-                            </a>
-                            <div class="desc">
-                                <h2><a href="blog.html">Creating Mobile Apps</a></h2>
-                                <p class="admin"><span>18 April 2018</span></p>
-                            </div>
-                        </div>
-                        <div class="f-blog">
-                            <a href="blog.html" class="blog-img" style="background-image: url({{ asset('blog_template/images/blog-2.jpg') }});">
-                            </a>
-                            <div class="desc">
-                                <h2><a href="blog.html">Creating Mobile Apps</a></h2>
-                                <p class="admin"><span>18 April 2018</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <div id="mce-responses2" class="clear">
+                      <div class="response" id="mce-error-response2" style="display:none"></div>
+                      <div class="response" id="mce-success-response2" style="display:none"></div>
+                    </div> <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_ddc180777a163e0f9f66ee014_4b1bcfa0bc" tabindex="-1" value=""></div>
+                    <div class="clear"></div>
+                  </div>
+                </form>
+              </div>
+              <!--End mc_embed_signup-->
             </div>
-            <div class="copy">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <p>
-                                <small class="block">&copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small><br> 
-                                <small class="block">Demo blog_template/images: <a href="http://unsplash.co/" target="_blank">Unsplash</a>, <a href="http://pexels.com/" target="_blank">Pexels</a></small>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+            <!-- /.newsletter-wrapper -->
+          </div>
+          <!-- /.widget -->
+        </div>
+        <!-- /column -->
+      </div>
+      <!--/.row -->
     </div>
-
-    <div class="gototop js-top">
-        <a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
-    </div>
-    
-    <!-- jQuery -->
-    <script src="{{ asset('blog_template/js/jquery.min.js') }}"></script>
-    <!-- jQuery Easing -->
-    <script src="{{ asset('blog_template/js/jquery.easing.1.3.js') }}"></script>
-    <!-- Bootstrap -->
-    <script src="{{ asset('blog_template/js/bootstrap.min.js') }}"></script>
-    <!-- Waypoints -->
-    <script src="{{ asset('blog_template/js/jquery.waypoints.min.js') }}"></script>
-    <!-- Stellar Parallax -->
-    <script src="{{ asset('blog_template/js/jquery.stellar.min.js') }}"></script>
-    <!-- Flexslider -->
-    <script src="{{ asset('blog_template/js/jquery.flexslider-min.js') }}"></script>
-    <!-- Owl carousel -->
-    <script src="{{ asset('blog_template/js/owl.carousel.min.js') }}"></script>
-    <!-- Magnific Popup -->
-    <script src="{{ asset('blog_template/js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('blog_template/js/magnific-popup-options.js') }}"></script>
-    <!-- Counters -->
-    <script src="{{ asset('blog_template/js/jquery.countTo.js') }}"></script>
-    <!-- Main -->
-    <script src="{{ asset('blog_template/js/main.js') }}"></script>
-
-    <script src="{{ asset('js/functions.js') }}"></script>
-    @yield('custom_js')
-
-    </body>
+    <!-- /.container -->
+  </footer>
+  <div class="progress-wrap">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+      <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+    </svg>
+  </div>
+  <script src="./assets/js/plugins.js"></script>
+  <script src="./assets/js/theme.js"></script>
+  @yield('custom_js')
+</body>
 </html>
