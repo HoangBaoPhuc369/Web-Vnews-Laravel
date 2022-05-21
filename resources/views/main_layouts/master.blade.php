@@ -125,10 +125,11 @@
           </div>
           <!--/column -->
           <aside class="col-lg-4 sidebar">
-            <form class="search-form">
+            <form class="search-form" action="{{ route('search') }}" method="GET">
+            @csrf
               <div class="form-floating mb-0">
-                <input id="search-form" type="text" class="form-control" placeholder="Search">
-                <label for="search-form">Search</label>
+                <input id="search-form" name="keywords" type="text" class="form-control" placeholder="Search">
+                <input type="submit" for="search-form" value="Search">
               </div>
             </form>
             <!-- /.search-form -->

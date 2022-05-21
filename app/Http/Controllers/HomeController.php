@@ -27,4 +27,26 @@ class HomeController extends Controller
             'tags' => $tags
         ]);
     }
+
+    public function search(Request $request) {
+        $keywords = $request->keywords;
+
+        $posts = Post::latest()->withCount('comments')->paginate(10);
+
+        $recent_posts = Post::latest()->take(5)->get();
+
+        $categories = Category::withCount('posts')->orderBy('posts_count', 'desc')->take(10)->get();
+
+        $tags = Tag::latest()->take(50)->get();
+
+        $search_post = Post::latest()->withCount('comments')->where('title','like','%'.$keywords.'%')->paginate(10);
+
+        return view('search', [
+            'posts' => $posts,
+            'recent_posts' => $recent_posts,
+            'categories' => $categories,
+            'tags' => $tags,
+            'search' => $search_post
+        ]);
+    }
 }
