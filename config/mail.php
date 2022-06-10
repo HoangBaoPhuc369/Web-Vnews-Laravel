@@ -84,11 +84,11 @@ return [
     */
 
     'from' => [
-        'address' => 'Contact@myblog.com',
-        'name' => "MyBlog Contact",
+        'address' => 'Contact@vnews.com',
+        'name' => "Vnews Contact",
     ],
 
-    'reply_to' => ['address' => 'Contact@myblog.com', 'name' => 'MyBlog Contact'],
+    'reply_to' => ['address' => 'Contact@vnews.com', 'name' => 'Vnews Contact'],
 
     /*
     |--------------------------------------------------------------------------

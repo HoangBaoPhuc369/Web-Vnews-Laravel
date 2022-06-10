@@ -181,71 +181,72 @@
           <!--/column -->
         </div>
         <!--/.row -->
+        <div class='global-message info d-none'></div>
         <div class="row">
           <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
             <h2 class="display-4 mb-3 text-center">Drop Us a Line</h2>
             <p class="lead text-center mb-10">Reach out to us from our contact form and we will get back to you shortly.</p>
-            <form class="contact-form needs-validation" method="post" action="./assets/php/contact.php" novalidate>
+            <form class="contact-form needs-validation"onsubmit="return false;" autocomplete="off" method="POST">
+              @csrf
               <div class="messages"></div>
               <div class="row gx-4">
                 <div class="col-md-6">
                   <div class="form-floating mb-4">
-                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Jane" required>
+                    <x-blog.form.input value='{{ old("first_name") }}' placeholder='Your Firstname' name="first_name" />
+                    <!-- <input id="form_name" value='{{ old("first_name") }}' type="text" name="first_name"  class="form-control" placeholder="Jane" required> -->
                     <label for="form_name">First Name *</label>
                     <div class="valid-feedback"> Looks good! </div>
                     <div class="invalid-feedback"> Please enter your first name. </div>
+                    <small class='error text-danger first_name'></small>
                   </div>
                 </div>
                 <!-- /column -->
                 <div class="col-md-6">
                   <div class="form-floating mb-4">
-                    <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Doe" required>
+                  <x-blog.form.input value='{{ old("last_name") }}' placeholder='Your Lastname' name="last_name" />
+                    <!-- <input id="form_lastname" type="text"  value='{{ old("last_name") }}' name="last_name" class="form-control" placeholder="Doe" required> -->
                     <label for="form_lastname">Last Name *</label>
                     <div class="valid-feedback"> Looks good! </div>
                     <div class="invalid-feedback"> Please enter your last name. </div>
+                    <small class='error text-danger last_name'></small>
                   </div>
                 </div>
                 <!-- /column -->
                 <div class="col-md-6">
                   <div class="form-floating mb-4">
-                    <input id="form_email" type="email" name="email" class="form-control" placeholder="jane.doe@example.com" required>
+                  <x-blog.form.input value='{{ old("email") }}' placeholder='Your Email' type='email' name="email" />
+                    <!-- <input id="form_email" value='{{ old("email") }}' type="email" name="email" class="form-control" placeholder="jane.doe@example.com" required> -->
                     <label for="form_email">Email *</label>
+                    <div class="valid-feedback"> Looks good! </div>
+                    <div class="invalid-feedback"> Please provide a valid email address. </div>
+                    <small class='error text-danger email'></small>
+                  </div>
+                </div>
+                 <!-- /column -->
+                 <div class="col-md-6">
+                  <div class="form-floating mb-4">
+                    <x-blog.form.input value='{{ old("subject") }}' required='false' name="subject" placeholder='Your Subject' />
+                    <!-- <input id="form_email" type="text" value='{{ old("subject") }}' name="subject" class="form-control" placeholder="jane.doe@example.com" required> -->
+                    <label for="form_email">Subject *</label>
                     <div class="valid-feedback"> Looks good! </div>
                     <div class="invalid-feedback"> Please provide a valid email address. </div>
                   </div>
                 </div>
                 <!-- /column -->
-                <div class="col-md-6">
-                  <div class="form-select-wrapper mb-4">
-                    <select class="form-select" id="form-select" name="department" required>
-                      <option selected disabled value="">Select a department</option>
-                      <option value="Sales">Sales</option>
-                      <option value="Marketing">Marketing</option>
-                      <option value="Customer Support">Customer Support</option>
-                    </select>
-                    <div class="valid-feedback"> Looks good! </div>
-                    <div class="invalid-feedback"> Please select a department. </div>
-                  </div>
-                </div>
-                <!-- /column -->
-                <div class="col-12">
-                  <div class="form-floating mb-4">
-                    <textarea id="form_message" name="message" class="form-control" placeholder="Your message" style="height: 150px" required></textarea>
-                    <label for="form_message">Message *</label>
-                    <div class="valid-feedback"> Looks good! </div>
-                    <div class="invalid-feedback"> Please enter your messsage. </div>
-                  </div>
-                </div>
-                <!-- /column -->
                 <div class="col-12 text-center">
-                  <input type="submit" class="btn btn-primary rounded-pill btn-send mb-3" value="Send message">
+                <x-blog.form.textarea value='{{ old("message") }}' placeholder='What you want to tell us.' name="message" />
+                  <!-- <input type="submit" class="btn btn-primary rounded-pill btn-send mb-3" value="Send message"> -->
                   <p class="text-muted"><strong>*</strong> These fields are required.</p>
                 </div>
                 <!-- /column -->
               </div>
               <!-- /.row -->
+              <div class="form-group" style="text-align: center;">
+								<input type="submit" value="Send Message" class="btn btn-primary rounded-pill send-message-btn" style="width: 100%;">
+							</div>
             </form>
             <!-- /form -->
+            <x-blog.message :status="'success'" />
           </div>
           <!-- /column -->
         </div>
@@ -338,9 +339,70 @@
       <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
     </svg>
   </div>
-  <script src="./assets/js/plugins.js"></script>
-  <script src="./assets/js/theme.js"></script>
-  @yield('custom_js')
+  <script src="{{ asset('assets/js/plugins.js')}}"></script>
+  <script src="{{ asset('assets/js/theme.js')}}"></script>
+   <!-- jQuery -->
+   <script src="{{ asset('blog_template/js/jquery.min.js') }}"></script>
+    <!-- jQuery Easing -->
+    <script src="{{ asset('blog_template/js/jquery.easing.1.3.js') }}"></script>
+    <script  src="{{ asset('js/functions.js') }}"></script>
+  <script>
+
+    $(document).on("click", '.send-message-btn', (e) => {
+      e.preventDefault();
+      let $this = e.target;
+      
+      let csrf_token = $($this).parents("form").find("input[name='_token']").val()
+      let first_name = $($this).parents("form").find("input[name='first_name']").val()
+      let last_name = $($this).parents("form").find("input[name='last_name']").val()
+      let email = $($this).parents("form").find("input[name='email']").val()
+      let subject = $($this).parents("form").find("input[name='subject']").val()
+      let message = $($this).parents("form").find("textarea[name='message']").val()
+
+      let formData = new FormData();
+      formData.append('_token', csrf_token);
+      formData.append('first_name', first_name);
+      formData.append('last_name', last_name);
+      formData.append('email', email);
+      formData.append('subject', subject);
+      formData.append('message', message);
+
+      $.ajax({
+        url: "{{ route('contact.store') }}",
+        data: formData,
+        type: 'POST',
+        dataType: 'JSON',
+        processData:false,
+        contentType: false,
+        success: function(data){
+          
+          if(data.success)
+          {
+            $(".global-message").addClass('alert , alert-info')
+            $(".global-message").fadeIn()
+            $(".global-message").text(data.message)
+            $(".global-message").removeClass('d-none')
+
+            clearData($($this).parents("form"), ['first_name', 'last_name', 'email', 'subject', 'message']);
+
+            setTimeout(() => {
+              $(".global-message").fadeOut()
+              $(".global-message").addClass('d-none')
+            }, 5000);
+          }
+          else 
+          {
+            for (const error in data.errors)
+            {
+              $("small."+error).text(data.errors[error]);
+            }
+          }
+        }
+      })
+
+    })
+
+  </script>
 </body>
 
 </html>

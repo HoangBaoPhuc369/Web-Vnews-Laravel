@@ -2,6 +2,7 @@
 @extends("admin_dashboard.layouts.app")
 
 @section("style")
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.10.0/tinymce.min.js" integrity="sha512-XNYSOn0laKYg55QGFv1r3sIlQWCAyNKjCa+XXF5uliZH+8ohn327Ewr2bpEnssV9Zw3pB3pmVvPQNrnCTRZtCg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection
 
@@ -91,9 +92,27 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class='row'>
+                                            <div class='col-md-8'>
+                                                <div class="mb-3">
+                                                    <label for="about_third_image" class="form-label">Third Image</label>
+                                                    <input name='about_third_image' type='file' class="form-control" id="about_third_image">
+                                                
+                                                    @error('about_third_image')
+                                                        <p class='text-danger'>{{ $message }}</p>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class='col-md-4'>
+                                                <div class='user-image p-2'>
+                                                    <img class='img-fluid img-thumbnail' src='{{ asset('storage/' . $setting->about_third_image) }}' >
+                                                </div>
+                                            </div>
+                                        </div>
                                         
                                         <div class="mb-3">
-                                            <label for="about_our_mission" class="form-label">About Our Mission</label>
+                                            <label for="about_our_mission" class="form-label">Slogan 1</label>
                                             <textarea name='about_our_mission'  id='about_our_mission' class="form-control" id="our_mission" rows="3">{{ old("about_our_mission", $setting->about_our_mission) }}</textarea>
                                         
                                             @error('about_our_mission')
@@ -102,7 +121,7 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="about_our_vision" class="form-label">About Our Vision</label>
+                                            <label for="about_our_vision" class="form-label">Slogan 2</label>
                                             <textarea name='about_our_vision'  id='about_our_vision' class="form-control" rows="3">{{ old("about_our_vision", $setting->about_our_vision) }}</textarea>
                                         
                                             @error('about_our_vision')
@@ -112,13 +131,95 @@
 
 
                                         <div class="mb-3">
-                                            <label for="about_services" class="form-label">About Services</label>
+                                            <label for="about_services" class="form-label">Slogan 3</label>
                                             <textarea name='about_services'  id='about_services' class="form-control" rows="3">{{ old("about_services", $setting->about_services) }}</textarea>
                                         
                                             @error('about_services')
                                                 <p class='text-danger'>{{ $message }}</p>
                                             @enderror
                                         </div>
+                                        
+                                        <div class="row">
+                                            <label  class="form-label">Banner</label>
+                                            <div class="col">
+                                                <div class="card ">
+                                                    <div class="card-body">
+                                                        <label for="banner_image_1" class="form-label">Banner 1</label>
+                                                        <input name='banner_image_1' type='file' class="form-control" id="banner_image_1">
+                                                    
+                                                        @error('banner_image_1')
+                                                            <p class='text-danger'>{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="card ">
+                                                    <div class="card-body">
+                                                        <label for="banner_image_2" class="form-label">Banner 2</label>
+                                                        <input name='banner_image_2' type='file' class="form-control" id="banner_image_2">
+                                                    
+                                                        @error('banner_image_2')
+                                                            <p class='text-danger'>{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="card ">
+                                                    <div class="card-body">
+                                                        <label for="banner_image_3" class="form-label">Banner 3</label>
+                                                        <input name='banner_image_3' type='file' class="form-control" id="banner_image_3">
+                                                    
+                                                        @error('banner_image_3')
+                                                            <p class='text-danger'>{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="card ">
+                                                    <div class="card-body">
+                                                        <label for="banner_image_4" class="form-label">Banner 4</label>
+                                                        <input name='banner_image_4' type='file' class="form-control" id="banner_image_4">
+                                                    
+                                                        @error('banner_image_4')
+                                                            <p class='text-danger'>{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <label  class="form-label">Sub Banner</label>
+                                            <div class="col">
+                                                <div class="card ">
+                                                    <div class="card-body">
+                                                        <label for="sub_banner1" class="form-label">Sub Banner 1</label>
+                                                        <input name='sub_banner1' type='file' class="form-control" id="sub_banner1">
+                                                    
+                                                        @error('sub_banner1')
+                                                            <p class='text-danger'>{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="card ">
+                                                    <div class="card-body">
+                                                        <label for="sub_banner2" class="form-label">Sub Banner 2</label>
+                                                        <input name='sub_banner2' type='file' class="form-control" id="sub_banner2">
+                                                    
+                                                        @error('sub_banner2')
+                                                            <p class='text-danger'>{{ $message }}</p>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          
+                                        </div>
+                                       
                                         
 
                                         <button class='btn btn-primary' type='submit'>Update</button>
@@ -141,6 +242,9 @@
 
 @section("script")
 <script>
+
+    
+
     $(document).ready(function () {
     
         setTimeout(() => {
@@ -163,7 +267,13 @@
         initTinyMCE('about_our_vision');
         initTinyMCE('about_services');
 
+       
+
     });
 
+
+   
+
 </script>
+
 @endsection

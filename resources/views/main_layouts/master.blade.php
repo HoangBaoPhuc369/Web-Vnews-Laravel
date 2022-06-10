@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="{{ asset('/assets/img/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/plugins.css') }}">
     <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/grid.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mystyle.css') }}">
 </head>
 
@@ -94,15 +95,46 @@
     </header>
     <!-- /header -->
     <section class="wrapper bg-soft-primary">
-      <div class="container py-12 py-md-16 text-center">
-        <div class="row">
-          <div class="col-md-7 col-lg-6 col-xl-5 mx-auto">
-            <h1 class="display-1 mb-3">Business News</h1>
-            <p class="lead px-lg-5 px-xxl-8 mb-1">Welcome to our journal. Here you can find the latest company news and business articles.</p>
+      <div class="container text-center">
+         <div class="row">
+         <div class="col-md-8">
+              <div class="swiper-container dots-over" data-margin="5" data-autoplay="true" data-dots="true" data-nav="true" >
+                  <div class="swiper">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide ">
+                        <img src="{{ asset('storage/' . $setting->banner_image_1) }}" alt="" />
+                      </div>
+                      <!--/.swiper-slide -->
+                      <div class="swiper-slide ">
+                        <img src="{{ asset('storage/' . $setting->banner_image_2) }}" alt="" />
+                      </div>
+                      <!--/.swiper-slide -->
+                      <div class="swiper-slide">
+                        <img src="{{ asset('storage/' . $setting->banner_image_3) }}" class="" alt="" />
+                      </div>
+
+                      <div class="swiper-slide">
+                        <img src="{{ asset('storage/' . $setting->banner_image_4) }}" class="" alt="" />
+                      </div>
+                    </div>
+                    <!--/.swiper-wrapper -->
+                  </div>
+                  <!-- /.swiper -->
+                </div>
+                <!-- /.swiper-container -->
+                <!-- /column -->
+              </div>
+
+              <div class="col-md-4 pad-left-0">
+                <div>
+                  <img src="{{ asset('storage/' . $setting->sub_banner1) }}" style="width: 100%;height: 192.5px;margin-bottom: 15px;" alt="" />
+                </div>
+                <div>
+                  <img src="{{ asset('storage/' . $setting->sub_banner2) }}" style="width: 100%;height: 192.5px;" alt="" />
+                </div>
+              </div>
+         </div>
           </div>
-          <!-- /column -->
-        </div>
-        <!-- /.row -->
       </div>
       <!-- /.container -->
     </section>
@@ -126,10 +158,11 @@
           <!--/column -->
           <aside class="col-lg-4 sidebar">
             <form class="search-form" action="{{ route('search') }}" method="GET">
-            @csrf
+              @csrf
               <div class="form-floating mb-0">
                 <input id="search-form" name="keywords" type="text" class="form-control" placeholder="Search">
-                <input type="submit" for="search-form" value="Search">
+                <label for="search-form">Search</label>
+                <button class="search-btn-icon" name="" type="submit"></button>
               </div>
             </form>
             <!-- /.search-form -->

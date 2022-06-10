@@ -14,9 +14,16 @@ class Setting extends Model
         'about_second_text',
         'about_first_image',
         'about_second_image',
+        'about_third_image',
         'about_our_vision',
         'about_our_mission',
         'about_services',
+        'banner_image_1',
+        'banner_image_2',
+        'banner_image_3',
+        'banner_image_4',
+        'sub_banner1',
+        'sub_banner2',
     ];
 
     
