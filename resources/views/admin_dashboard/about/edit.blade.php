@@ -58,85 +58,71 @@
                                         </div>
 
                                         <div class='row'>
-                                            <div class='col-md-8'>
-                                                <div class="mb-3">
-                                                    <label for="about_first_image" class="form-label">First Image</label>
-                                                    <input name='about_first_image' type='file' class="form-control" id="about_first_image">
-                                                
-                                                    @error('about_first_image')
-                                                        <p class='text-danger'>{{ $message }}</p>
-                                                    @enderror
+                                            <label for="about_first_text" class="form-label">About Members</label>
+                                            <div class='col'>
+                                                <div class="card align-center">
+                                                   <div class="card-body ">
+                                                        <label for="about_first_image" class="form-label">First Image</label>
+                                                        <img class='img-fluid img-thumbnail img_settings' src='{{ asset('storage/' . $setting->about_first_image) }}' >
+                                                        <input name='about_first_image' type='file' class="form-control img-about-settings" id="about_first_image">
+                                                        <label class="btn btn-primary btn-sm mb-0 me-2" for="about_first_image">
+                                                            Edit
+                                                        </label>
+                                                        @error('about_first_image')
+                                                            <p class='text-danger'>{{ $message }}</p>
+                                                        @enderror
+                                                   </div>
+                                                  <div class="slogan">
+                                                        <label for="about_slogan" class="form-label">Slogan 1</label>
+                                                        <input name='about_our_mission'  id='about_our_mission' class="form-control" id="our_mission" value="{{ old('about_our_mission', $setting->about_our_mission) }}"/>
+                                                        @error('about_our_mission')
+                                                            <p class='text-danger'>{{ $message }}</p>
+                                                        @enderror
+                                                  </div>
                                                 </div>
                                             </div>
-                                            <div class='col-md-4'>
-                                                <div class='user-image p-2'>
-                                                    <img class='img-fluid img-thumbnail' src='{{ asset('storage/' . $setting->about_first_image) }}' >
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <div class='row'>
-                                            <div class='col-md-8'>
-                                                <div class="mb-3">
-                                                    <label for="about_second_image" class="form-label">Second Image</label>
-                                                    <input name='about_second_image' type='file' class="form-control" id="about_second_image">
-                                                
-                                                    @error('about_second_image')
-                                                        <p class='text-danger'>{{ $message }}</p>
-                                                    @enderror
+                                            <div class='col'>
+                                                <div class="card align-center">
+                                                   <div class="card-body ">
+                                                        <label for="about_second_image" class="form-label">Second Image</label>
+                                                        <img class='img-fluid img-thumbnail img_settings' src='{{ asset('storage/' . $setting->about_second_image) }}' >
+                                                        <input name='about_second_image' type='file' class="form-control img-about-settings" id="about_second_image">
+                                                        @error('about_second_image')
+                                                            <p class='text-danger'>{{ $message }}</p>
+                                                        @enderror
+                                                   </div>
+                                                   <div class="slogan">
+                                                        <label for="about_slogan" class="form-label">Slogan 2</label>
+                                                        <input name='about_our_vision'  id='about_our_vision' class="form-control" id="about_our_vision" value="{{ old('about_our_vision', $setting->about_our_vision) }}"/>
+                                                        @error('about_our_vision')
+                                                            <p class='text-danger'>{{ $message }}</p>
+                                                        @enderror
+                                                   </div>
                                                 </div>
                                             </div>
-                                            <div class='col-md-4'>
-                                                <div class='user-image p-2'>
-                                                    <img class='img-fluid img-thumbnail' src='{{ asset('storage/' . $setting->about_second_image) }}' >
+
+                                            <div class='col'>
+                                                <div class="card align-center">
+                                                   <div class="card-body ">
+                                                        <label for="about_third_image" class="form-label">Third Image</label>
+                                                        <img class='img-fluid img-thumbnail img_settings' src='{{ asset('storage/' . $setting->about_third_image) }}' >
+                                                        <input name='about_third_image' type='file' class="form-control img-about-settings" id="about_third_image">
+                                                    
+                                                        @error('about_third_image')
+                                                            <p class='text-danger'>{{ $message }}</p>
+                                                        @enderror
+                                                   </div>
+
+                                                   <div class="slogan">
+                                                        <label for="about_slogan" class="form-label">Slogan 3</label>
+                                                        <input name='about_services'  id='about_services' class="form-control" id="about_services" value="{{ old('about_services', $setting->about_services) }}"/>
+                                                        @error('about_services')
+                                                            <p class='text-danger'>{{ $message }}</p>
+                                                        @enderror
+                                                   </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class='row'>
-                                            <div class='col-md-8'>
-                                                <div class="mb-3">
-                                                    <label for="about_third_image" class="form-label">Third Image</label>
-                                                    <input name='about_third_image' type='file' class="form-control" id="about_third_image">
-                                                
-                                                    @error('about_third_image')
-                                                        <p class='text-danger'>{{ $message }}</p>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class='col-md-4'>
-                                                <div class='user-image p-2'>
-                                                    <img class='img-fluid img-thumbnail' src='{{ asset('storage/' . $setting->about_third_image) }}' >
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="mb-3">
-                                            <label for="about_our_mission" class="form-label">Slogan 1</label>
-                                            <textarea name='about_our_mission'  id='about_our_mission' class="form-control" id="our_mission" rows="3">{{ old("about_our_mission", $setting->about_our_mission) }}</textarea>
-                                        
-                                            @error('about_our_mission')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="about_our_vision" class="form-label">Slogan 2</label>
-                                            <textarea name='about_our_vision'  id='about_our_vision' class="form-control" rows="3">{{ old("about_our_vision", $setting->about_our_vision) }}</textarea>
-                                        
-                                            @error('about_our_vision')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
-                                        </div>
-
-
-                                        <div class="mb-3">
-                                            <label for="about_services" class="form-label">Slogan 3</label>
-                                            <textarea name='about_services'  id='about_services' class="form-control" rows="3">{{ old("about_services", $setting->about_services) }}</textarea>
-                                        
-                                            @error('about_services')
-                                                <p class='text-danger'>{{ $message }}</p>
-                                            @enderror
                                         </div>
                                         
                                         <div class="row">
@@ -263,9 +249,9 @@
             });
         }
 
-        initTinyMCE('about_our_mission');
-        initTinyMCE('about_our_vision');
-        initTinyMCE('about_services');
+        // initTinyMCE('about_our_mission');
+        // initTinyMCE('about_our_vision');
+        // initTinyMCE('about_services');
 
        
 

@@ -54,3 +54,27 @@
     margin-bottom: 0;
     margin-right: 0;
 }
+
+.img_settings {
+    width: 200px;
+    display: block;
+}
+
+.img-about-settings {
+    width: 200px;
+}
+
+.align-center {
+    align-items: center;
+    text-align: center;
+}
+
+.slogan {
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+}
+
+.about_slogan {
+    margin-left: 5px;
+}
